@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pumps-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pumps-backend
+  namespace: pumps-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pumps-backend
+  template:
+    metadata:
+      labels:
+        app: pumps-backend
+    spec:
+      containers:
+        - name: backend
+          image: pumps-backend:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pumps-backend-service
+  namespace: pumps-system
+spec:
+  selector:
+    app: pumps-backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pumps-frontend
+  namespace: pumps-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pumps-frontend
+  template:
+    metadata:
+      labels:
+        app: pumps-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: pumps-frontend:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pumps-frontend-service
+  namespace: pumps-system
+spec:
+  selector:
+    app: pumps-frontend
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pumps-ingress
+  namespace: pumps-system
+spec:
+  rules:
+    - host: pumps.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pumps-frontend-service
+                port:
+                  number: 3000
+    - host: api.pumps.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pumps-backend-service
+                port:
+                  number: 8080
