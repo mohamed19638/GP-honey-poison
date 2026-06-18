@@ -1,0 +1,8 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY pump_simulator.py .
+COPY pump_data_schema.json .
+
+CMD ["python", "pump_simulator.py"]

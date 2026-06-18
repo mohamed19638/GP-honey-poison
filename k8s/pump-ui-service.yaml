@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pump-ui
+  namespace: app
+spec:
+  type: NodePort # لغم رقم 3: لازم NodePort عشان Minikube يديك URL خارجي
+  selector:
+    app: pump-ui
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30001 # اختياري: عشان يثبت البورت اللي بتفتحه في المتصفح

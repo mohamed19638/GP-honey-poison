@@ -1,0 +1,10 @@
+{
+  "deviceId": "PUMP-01",
+  "timestamp": "2026-02-06T08:58:03.549360",
+  "temperature": 48.4,
+  "pressure": 56.2,
+  "flowRate": 222.6,
+  "vibration": 3.1,
+  "power": 18.0,
+  "status": "NORMAL"
+}

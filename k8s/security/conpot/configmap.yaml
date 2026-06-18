@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: conpot-config
+  namespace: security
+data:
+  CONPOT_MODE: "simulation"
+

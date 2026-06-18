@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conpot
+  namespace: security
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conpot
+  template:
+    metadata:
+      labels:
+        app: conpot
+    spec:
+      containers:
+      - name: conpot
+        # تم تصحيح اسم الصورة هنا من conpot/conpot إلى honeynet/conpot
+        image: honeynet/conpot:latest
+        ports:
+        - containerPort: 102
+        volumeMounts:
+        - name: shared-data
+          mountPath: /data
+      volumes:
+      - name: shared-data
+        emptyDir: {}

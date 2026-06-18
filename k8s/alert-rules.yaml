@@ -1,0 +1,11 @@
+groups:
+  - name: pump_alerts
+    rules:
+    - alert: HighPumpPressure
+      expr: pressure > 80
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "الضغط عالي جداً!"
+        description: "وصل الضغط لـ {{ $value }} بار في الطلمبة."

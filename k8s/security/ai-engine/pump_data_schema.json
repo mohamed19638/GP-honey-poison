@@ -1,0 +1,26 @@
+{
+  "deviceId": "PUMP-01",
+  "timestamp": "ISO-8601",
+
+  "temperature": 0,
+  "pressure": 0,
+  "flowRate": 0,
+  "vibration": 0,
+  "power": 0,
+
+  "status": "NORMAL | WARNING | ALERT | SENSOR_ERROR",
+
+  "limits": {
+    "temperatureMax": 80,
+    "pressureMax": 100,
+    "vibrationMax": 6
+  },
+
+  "unit": {
+    "temperature": "°C",
+    "pressure": "bar",
+    "flowRate": "L/min",
+    "vibration": "mm/s",
+    "power": "kW"
+  }
+}

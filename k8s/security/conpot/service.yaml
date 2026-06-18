@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: conpot
+  namespace: security
+spec:
+  selector:
+    app: conpot
+  ports:
+    - port: 102
+      targetPort: 102
+  type: NodePort
+

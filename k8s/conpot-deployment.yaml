@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conpot
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conpot
+  template:
+    metadata:
+      labels:
+        app: conpot
+    spec:
+      containers:
+      - name: conpot
+        image: honeynet/conpot:latest
+        ports:
+        - containerPort: 502
+        - containerPort: 161

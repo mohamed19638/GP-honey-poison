@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pump-api
+  namespace: app
+spec:
+  replicas: 1 # 
+  selector:
+    matchLabels:
+      app: pump-api
+  template:
+    metadata:
+      labels:
+        app: pump-api
+    spec:
+      containers:
+      - name: pump-api
+        image: pump-api:latest
+        imagePullPolicy: Never # لغم رقم 1: لازم تكون Never عشان يقرأ من Minikube
+        ports:
+        - containerPort: 8080

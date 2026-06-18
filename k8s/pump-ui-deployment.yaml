@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pump-ui
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pump-ui
+  template:
+    metadata:
+      labels:
+        app: pump-ui
+    spec:
+      containers:
+      - name: pump-ui
+        image: pump-ui:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
